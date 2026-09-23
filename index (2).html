@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="pt-MZ">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#07111d">
+
+<title>Moçambique Play</title>
+
+<style>
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  padding-bottom:80px;
+  background:#07111d;
+  color:white;
+  font-family:Arial,sans-serif;
+}
+
+button,input{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+/* CABEÇALHO */
+
+.header{
+  height:82px;
+  background:#07111d;
+  border-bottom:1px solid #243342;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 18px;
+  position:sticky;
+  top:0;
+  z-index:20;
+}
+
+.logo{
+  font-size:22px;
+  font-weight:900;
+}
+
+.logo span{
+  color:#ffd43b;
+}
+
+.menu{
+  width:55px;
+  height:55px;
+  border:0;
+  border-radius:18px;
+  background:#142437;
+  color:white;
+  font-size:28px;
+}
+
+/* ÁREA PRINCIPAL */
+
+.hero{
+  margin:0 26px 30px;
+  padding:30px 36px 40px;
+  border-radius:0 0 30px 30px;
+  background:linear-gradient(145deg,#087040,#004a2a);
+  border:1px solid #2b6e4d;
+}
+
+.hero-title{
+  text-align:center;
+  font-size:27px;
+  font-weight:900;
+  margin-bottom:35px;
+}
+
+.price{
+  max-width:360px;
+  margin:auto;
+  margin-bottom:45px;
+  padding:16px 10px 20px;
+  text-align:center;
+  border-radius:60px;
+  background:linear-gradient(#ffe28a,#e7a51c);
+  color:#111;
+  border:4px solid #ffe9a3;
+}
+
+.price small{
+  display:block;
+  font-size:23px;
+  font-weight:900;
+}
+
+.price strong{
+  display:block;
+  font-size:46px;
+}
+
+.price span{
+  font-size:20px;
+  font-weight:900;
+}
+
+/* BENEFÍCIOS */
+
+.feature{
+  padding:16px 0;
+  border-bottom:1px solid #66935f;
+  font-size:21px;
+  font-weight:bold;
+}
+
+.valid{
+  width:max-content;
+  margin:30px auto;
+  padding:13px 25px;
+  border-radius:13px;
+  background:linear-gradient(#ffe17a,#d89b18);
+  color:#111;
+  font-size:19px;
+  font-weight:900;
+}
+
+/* BOTÕES */
+
+.actions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:15px;
+}
+
+.action{
+  border:0;
+  border-radius:17px;
+  padding:17px 8px;
+  font-size:18px;
+  font-weight:900;
+}
+
+.watch{
+  background:#1687ed;
+  color:white;
+}
+
+.enter{
+  background:#ffd348;
+  color:#111;
+}
+
+/* CONTEÚDOS */
+
+section{
+  padding:0 26px;
+  margin-bottom:30px;
+}
+
+h2{
+  font-size:28px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:13px;
+}
+
+.card{
+  min-height:210px;
+  border-radius:23px;
+  background:#142231;
+  border:1px solid #2c3d4d;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:20px;
+}
+
+.card .icon{
+  font-size:55px;
+  margin-bottom:15px;
+}
+
+.card b{
+  font-size:19px;
+}
+
+/* MODO DE DADOS */
+
+.data-settings{
+  margin:0 26px 28px;
+  padding:16px;
+  border-radius:18px;
+  background:#101c28;
+  border:1px solid #2b3d4d;
+}
+
+.data-settings h3{
+  margin:0 0 8px;
+}
+
+.data-settings p{
+  color:#aebac5;
+  font-size:12px;
+  line-height:1.5;
+}
+
+.quality-row{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+
+.quality-btn{
+  border:1px solid #34495a;
+  background:#0b141d;
+  color:white;
+  border-radius:10px;
+  padding:9px 12px;
+  font-weight:bold;
+}
+
+.quality-btn.active{
+  background:#00a859;
+  border-color:#00a859;
+}
+
+/* PLAYER */
+
+.video-box{
+  display:none;
+  margin:0 26px 30px;
+  padding:15px;
+  border-radius:18px;
+  background:#101c28;
+  border:1px solid #2b3d4d;
+}
+
+.video-box video{
+  width:100%;
+  border-radius:13px;
+  background:black;
+  display:block;
+}
+
+.video-note{
+  font-size:12px;
+  color:#9eabb6;
+  margin-top:9px;
+}
+
+/* PAGAMENTO */
+
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.78);
+  z-index:100;
+  align-items:flex-end;
+  justify-content:center;
+  padding:12px;
+}
+
+.modal-box{
+  width:100%;
+  max-width:500px;
+  background:#101a25;
+  border:1px solid #304254;
+  border-radius:25px;
+  padding:22px;
+}
+
+.modal-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.modal h2{
+  margin:0;
+  font-size:23px;
+}
+
+.close{
+  border:0;
+  background:#263646;
+  color:white;
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  font-size:22px;
+}
+
+.modal p{
+  color:#b9c4ce;
+  line-height:1.5;
+}
+
+label{
+  display:block;
+  margin-top:14px;
+  margin-bottom:6px;
+  font-weight:bold;
+}
+
+input{
+  width:100%;
+  padding:14px;
+  border-radius:12px;
+  border:1px solid #34495a;
+  background:#09121b;
+  color:white;
+  outline:none;
+}
+
+.method{
+  margin-top:12px;
+  padding:16px;
+  border:2px solid #2b3d4d;
+  border-radius:15px;
+  background:#0b141d;
+}
+
+.method.selected{
+  border-color:#16d477;
+}
+
+.method-title{
+  font-weight:bold;
+}
+
+.number{
+  font-size:21px;
+  font-weight:900;
+  margin:8px 0;
+}
+
+.copy{
+  border:0;
+  border-radius:10px;
+  background:#1c2d3d;
+  color:white;
+  padding:9px 12px;
+}
+
+.paid{
+  width:100%;
+  border:0;
+  border-radius:13px;
+  padding:15px;
+  margin-top:17px;
+  background:#00a859;
+  color:white;
+  font-weight:900;
+}
+
+.note{
+  font-size:12px;
+  color:#8997a3;
+  margin-top:12px;
+  line-height:1.4;
+}
+
+/* MENU INFERIOR */
+
+.bottom{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  height:80px;
+  background:#07111d;
+  border-top:1px solid #273646;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  z-index:30;
+}
+
+.nav{
+  background:none;
+  border:0;
+  color:#aeb8c2;
+  font-size:12px;
+}
+
+.nav div{
+  font-size:27px;
+}
+
+@media(max-width:520px){
+
+  .logo{
+    font-size:19px;
+  }
+
+  .hero{
+    margin:0 20px 30px;
+    padding:25px 25px 35px;
+  }
+
+  .price strong{
+    font-size:40px;
+  }
+
+}
+</style>
+</head>
+
+<body>
+
+<!-- CABEÇALHO -->
+
+<header class="header">
+
+  <div class="logo">
+    🇲🇿 MOÇAMBIQUE <span>PLAY</span>
+  </div>
+
+  <button class="menu" onclick="abrirPagamento()">
+    ☰
+  </button>
+
+</header>
+
+
+<!-- PÁGINA PRINCIPAL -->
+
+<div id="home">
+
+  <div class="hero">
+
+    <div class="hero-title">
+      🇲🇿 MOÇAMBIQUE PLAY
+    </div>
+
+    <div class="price">
+
+      <small>VIP ACCESS</small>
+
+      <strong>100 MT/MÊS</strong>
+
+      <span>
+        100 METICAIS POR MÊS
+      </span>
+
+    </div>
+
+
+    <div class="feature">
+      ⚽ Futebol ao vivo
+    </div>
+
+    <div class="feature">
+      🎬 Filmes & Novelas
+    </div>
+
+    <div class="feature">
+      📺 Conteúdo de Entretenimento
+    </div>
+
+
+    <div class="valid">
+      📅 VÁLIDO 30 DIAS
+    </div>
+
+
+    <div class="actions">
+
+      <button
+        class="action watch"
+        onclick="assistir()">
+
+        ▶ ASSISTIR
+
+      </button>
+
+
+      <button
+        class="action enter"
+        onclick="abrirPagamento()">
+
+        🔐 ENTRAR
+
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- ECONOMIA DE INTERNET -->
+
+  <div class="data-settings">
+
+    <h3>
+      📶 Modo de dados
+    </h3>
+
+    <p>
+      Escolha a qualidade para controlar o consumo
+      de internet. 360p usa menos dados.
+    </p>
+
+    <div class="quality-row">
+
+      <button
+        class="quality-btn"
+        onclick="qualidade(360)"
+        id="q360">
+
+        360p • Económico
+
+      </button>
+
+
+      <button
+        class="quality-btn active"
+        onclick="qualidade(480)"
+        id="q480">
+
+        480p • Normal
+
+      </button>
+
+
+      <button
+        class="quality-btn"
+        onclick="qualidade(720)"
+        id="q720">
+
+        720p • Alta
+
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- CONTEÚDOS -->
+
+  <section>
+
+    <h2>
+      Conteúdos
+    </h2>
+
+    <div class="grid">
+
+      <div
+        class="card"
+        onclick="assistir()">
+
+        <div class="icon">
+          ⚽
+        </div>
+
+        <b>
+          Futebol ao vivo
+        </b>
+
+      </div>
+
+
+      <div
+        class="card"
+        onclick="assistir()">
+
+        <div class="icon">
+          🎬
+        </div>
+
+        <b>
+          Filmes & Novelas
+        </b>
+
+      </div>
+
+
+      <div
+        class="card"
+        onclick="assistir()">
+
+        <div class="icon">
+          📺
+        </div>
+
+        <b>
+          Entretenimento
+        </b>
+
+      </div>
+
+
+      <div
+        class="card"
+        onclick="assistir()">
+
+        <div class="icon">
+          🎵
+        </div>
+
+        <b>
+          Música
+        </b>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</div>
+
+
+<!-- ÁREA DE VÍDEO -->
+
+<div class="video-box" id="videoBox">
+
+  <video
+    id="player"
+    controls
+    playsinline
+    preload="none">
+
+    <!--
+      COLOQUE AQUI O LINK DO SEU
+      VÍDEO AUTORIZADO
+    -->
+
+  </video>
+
+  <div
+    class="video-note"
+    id="videoNote">
+
+    Escolha a qualidade antes de assistir.
+
+  </div>
+
+</div>
+
+
+<!-- PAGAMENTO -->
+
+<div
+  class="modal"
+  id="paymentModal">
+
+  <div class="modal-box">
+
+    <div class="modal-head">
+
+      <h2>
+        🔐 Entrar / Pagamento
+      </h2>
+
+      <button
+        class="close"
+        onclick="fecharPagamento()">
+
+        ×
+
+      </button>
+
+    </div>
+
+
+    <p>
+
+      Para assistir ao conteúdo,
+      faça o pagamento de
+
+      <b>100 MT</b>.
+
+      O acesso é válido por
+
+      <b>30 dias</b>.
+
+    </p>
+
+
+    <label>
+      Seu número de telefone
+    </label>
+
+    <input
+      id="telefone"
+      type="tel"
+      placeholder="Ex.: 84 123 4567"
+    >
+
+
+    <!-- E-MPESA -->
+
+    <div
+      class="method"
+      id="mpesa"
+      onclick="selecionar('mpesa')">
+
+      <div class="method-title">
+        📱 e-MPesa
+      </div>
+
+      <div class="number">
+        84 550 7155
+      </div>
+
+      <button
+        class="copy"
+        onclick="copiar('845507155')">
+
+        Copiar número
+
+      </button>
+
+    </div>
+
+
+    <!-- E-MOLA -->
+
+    <div
+      class="method"
+      id="emola"
+      onclick="selecionar('emola')">
+
+      <div class="method-title">
+        📱 e-Mola
+      </div>
+
+      <div class="number">
+        86 814 1095
+      </div>
+
+      <button
+        class="copy"
+        onclick="copiar('868141095')">
+
+        Copiar número
+
+      </button>
+
+    </div>
+
+
+    <button
+      class="paid"
+      onclick="confirmarPagamento()">
+
+      ✅ JÁ FIZ O PAGAMENTO
+
+    </button>
+
+
+    <div class="note">
+
+      Depois de confirmar, esta versão
+      libera o acesso neste dispositivo.
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- MENU INFERIOR -->
+
+<nav class="bottom">
+
+  <button
+    class="nav"
+    onclick="location.reload()">
+
+    <div>⌂</div>
+    Início
+
+  </button>
+
+
+  <button
+    class="nav"
+    onclick="assistir()">
+
+    <div>⚽</div>
+    Futebol
+
+  </button>
+
+
+  <button
+    class="nav"
+    onclick="assistir()">
+
+    <div>🎬</div>
+    Filmes
+
+  </button>
+
+
+  <button
+    class="nav"
+    onclick="abrirPagamento()">
+
+    <div>👤</div>
+    Conta
+
+  </button>
+
+</nav>
+
+
+<script>
+
+let metodo = "";
+
+let qualidadeAtual =
+  localStorage.getItem("qualidade") || "480";
+
+
+/* PAGAMENTO */
+
+function abrirPagamento(){
+
+  document.getElementById(
+    "paymentModal"
+  ).style.display = "flex";
+
+}
+
+
+function fecharPagamento(){
+
+  document.getElementById(
+    "paymentModal"
+  ).style.display = "none";
+
+}
+
+
+/* ESCOLHER MÉTODO */
+
+function selecionar(m){
+
+  metodo = m;
+
+  document
+    .getElementById("mpesa")
+    .classList.remove("selected");
+
+  document
+    .getElementById("emola")
+    .classList.remove("selected");
+
+  document
+    .getElementById(m)
+    .classList.add("selected");
+
+}
+
+
+/* COPIAR NÚMERO */
+
+function copiar(numero){
+
+  navigator.clipboard
+    .writeText(numero)
+    .then(function(){
+
+      alert(
+        "Número copiado: " + numero
+      );
+
+    })
+    .catch(function(){
+
+      alert(
+        "Número: " + numero
+      );
+
+    });
+
+}
+
+
+/* CONFIRMAR PAGAMENTO */
+
+function confirmarPagamento(){
+
+  const telefone =
+    document
+      .getElementById("telefone")
+      .value
+      .trim();
+
+
+  if(telefone === ""){
+
+    alert(
+      "Digite o seu número de telefone."
+    );
+
+    return;
+
+  }
+
+
+  if(metodo === ""){
+
+    alert(
+      "Escolha e-MPesa ou e-Mola."
+    );
+
+    return;
+
+  }
+
+
+  /*
+    ACESSO DE 30 DIAS
+  */
+
+  const validade =
+    Date.now() +
+    (30 * 24 * 60 * 60 * 1000);
+
+
+  localStorage.setItem(
+    "acessoMoçambiquePlay",
+    validade
+  );
+
+
+  fecharPagamento();
+
+
+  alert(
+    "Pagamento marcado como realizado. " +
+    "Acesso liberado por 30 dias."
+  );
+
+}
+
+
+/* VERIFICAR ACESSO */
+
+function temAcesso(){
+
+  const validade =
+    Number(
+      localStorage.getItem(
+        "acessoMoçambiquePlay"
+      ) || 0
+    );
+
+
+  return Date.now() < validade;
+
+}
+
+
+/* ASSISTIR */
+
+function assistir(){
+
+  if(!temAcesso()){
+
+    alert(
+      "🔒 Para assistir, primeiro faça o pagamento de 100 MT."
+    );
+
+    abrirPagamento();
+
+    return;
+
+  }
+
+
+  document
+    .getElementById("videoBox")
+    .style.display = "block";
+
+
+  document
+    .getElementById("videoBox")
+    .scrollIntoView({
+      behavior:"smooth"
+    });
+
+
+  document
+    .getElementById("videoNote")
+    .textContent =
+      "Qualidade selecionada: "
+      + qualidadeAtual
+      + "p.";
+
+}
+
+
+/* QUALIDADE */
+
+function qualidade(q){
+
+  qualidadeAtual = q;
+
+  localStorage.setItem(
+    "qualidade",
+    q
+  );
+
+
+  document
+    .querySelectorAll(".quality-btn")
+    .forEach(function(btn){
+
+      btn.classList.remove("active");
+
+    });
+
+
+  document
+    .getElementById("q" + q)
+    .classList.add("active");
+
+
+  alert(
+    "Qualidade selecionada: "
+    + q
+    + "p"
+  );
+
+}
+
+</script>
+
+</body>
+</html>
